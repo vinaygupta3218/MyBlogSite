@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Create New Article</title>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+         <table>
+            <tr>
+                <td>Title: </td>
+                <td><input type="text" name="title" /></td>
+            </tr>
+            <tr>
+                <td>Body: </td>
+                <td><textarea name="body" rows="10"
+                     cols="25" ></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Create" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

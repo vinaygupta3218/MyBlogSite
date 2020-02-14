@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Edit Profile</title>
+{% endblock %}
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>First Name: </td>
+                <td><input type="text" name="firstname"
+                value="{{ user.first_name }}"></td>
+            </tr>
+            <tr>
+                <td>Last Name: </td>
+                <td><input type="text" name="lastname"
+                value="{{ user.last_name }}"></td>
+            </tr>
+            <tr>
+                <td>Email Id: </td>
+                <td><input type="email" name="emailid"
+                value="{{ user.email }}"></td>
+            </tr>
+            <tr>
+                <td>Profile Pic: </td>
+                <td>
+                    <img src="{{ user.profile.photo.url }}"
+                    height="150" width="150"><br>
+                    <input type="file" name="photo">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

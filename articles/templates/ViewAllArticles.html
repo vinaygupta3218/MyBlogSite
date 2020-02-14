@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>View All Articles</title>
+{% endblock %}
+{% block content %}
+    <form>
+        <input name="query"
+         placeholder="type here title to search">
+        <input type="submit" value="Search">
+    </form>
+    <br>
+    {% for article in articles %}
+        <p><a href="{% url 'articledetails' article.id  %}">
+            {{ article.title }}</a></p>
+        <p>{{ article.snippet }}.....</p>
+        <p>{{ article.date }}</p>
+        <p>By: {{ article.author }}</p>
+    {% endfor %}
+    <br>
+    {% if articles.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ articles.previous_page_number }}">Previous</a>
+    {% endif %}
+    {% for page_number in articles.paginator.page_range %}
+        <a href="?page={{ page_number }}">{{ page_number }}</a>
+    {% endfor %}
+    {% if articles.has_next %}
+        <a href="?page={{ articles.next_page_number }}">Next</a>
+        <a href="?page={{ articles.paginator.num_pages }}">Last</a>
+    {% endif %}
+{% endblock %}
